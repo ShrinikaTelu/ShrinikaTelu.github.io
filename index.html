@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shrinika Telu — Software Engineer · Full-Stack & AI</title>
+<meta name="description" content="Shrinika Telu — Software Engineer building real-time industrial visualization platforms and AI-integrated systems. Angular, .NET, Python, LLMs." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B1220;
+  --panel:#101A2D;
+  --panel-2:#0E1626;
+  --line:#22304A;
+  --line-soft:#1A2740;
+  --amber:#FFB454;
+  --amber-dim:rgba(255,180,84,.14);
+  --cyan:#7FD1E8;
+  --cyan-dim:rgba(127,209,232,.12);
+  --text:#E8EDF6;
+  --muted:#93A1B8;
+  --faint:#5C6B85;
+  --good:#5CD692;
+  --radius:10px;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --sans:'IBM Plex Sans',system-ui,sans-serif;
+  --disp:'Archivo',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important}
+}
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--amber);color:var(--ink)}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px}
+
+/* ---------- chrome ---------- */
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(11,18,32,.82);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line-soft);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--text)}
+.brand b{color:var(--amber)}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.nav-links a:hover{color:var(--amber);text-decoration:none}
+@media(max-width:760px){.nav-links{display:none}}
+
+/* ---------- hero ---------- */
+header{position:relative;overflow:hidden;border-bottom:1px solid var(--line-soft)}
+header::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+  background-size:56px 56px;opacity:.35;
+  mask-image:radial-gradient(ellipse 90% 80% at 50% 0%,black 30%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 80% at 50% 0%,black 30%,transparent 75%);
+}
+.hero{position:relative;display:grid;grid-template-columns:1.25fr .75fr;gap:56px;padding:84px 0 56px;align-items:center}
+@media(max-width:860px){.hero{grid-template-columns:1fr;padding:56px 0 40px}}
+.status{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--good);border:1px solid rgba(92,214,146,.35);background:rgba(92,214,146,.07);
+  padding:6px 13px;border-radius:100px;margin-bottom:26px;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--good);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(92,214,146,.5)}55%{box-shadow:0 0 0 7px rgba(92,214,146,0)}}
+h1{
+  font-family:var(--disp);
+  font-weight:850;font-stretch:112%;
+  font-size:clamp(44px,7vw,76px);
+  line-height:1.0;letter-spacing:-.015em;
+  margin-bottom:18px;
+}
+h1 .amp{color:var(--amber)}
+.role{
+  font-family:var(--mono);font-size:14px;letter-spacing:.1em;color:var(--cyan);
+  text-transform:uppercase;margin-bottom:22px;
+}
+.lede{color:var(--muted);max-width:54ch;font-size:17px;margin-bottom:34px}
+.lede strong{color:var(--text);font-weight:500}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.05em;
+  padding:13px 24px;border-radius:8px;display:inline-flex;align-items:center;gap:9px;
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.btn:hover{text-decoration:none;transform:translateY(-2px)}
+.btn-amber{background:var(--amber);color:#211506}
+.btn-amber:hover{box-shadow:0 6px 24px rgba(255,180,84,.3)}
+.btn-ghost{border:1px solid var(--line);color:var(--text)}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+
+.portrait{position:relative;justify-self:center}
+.portrait .frame{
+  width:min(300px,70vw);aspect-ratio:1/1.08;border-radius:14px;overflow:hidden;
+  border:1px solid var(--line);background:var(--panel);
+  box-shadow:0 24px 60px rgba(0,0,0,.45);
+}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block;filter:saturate(.92)}
+.portrait .tag{
+  position:absolute;left:-14px;bottom:22px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink);
+  background:var(--amber);padding:7px 13px;border-radius:6px;font-weight:600;
+  box-shadow:0 8px 20px rgba(255,180,84,.25);
+}
+.portrait .corner{position:absolute;width:18px;height:18px;border-color:var(--cyan);border-style:solid;opacity:.8}
+.portrait .c1{top:-8px;left:-8px;border-width:2px 0 0 2px}
+.portrait .c2{bottom:-8px;right:-8px;border-width:0 2px 2px 0}
+
+/* ---------- telemetry strip (signature) ---------- */
+.telemetry{
+  position:relative;border:1px solid var(--line);border-radius:var(--radius);
+  background:linear-gradient(180deg,var(--panel),var(--panel-2));
+  margin:0 0 64px;overflow:hidden;
+}
+.tele-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 20px;border-bottom:1px solid var(--line-soft);
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+}
+.tele-head .live{color:var(--amber)}
+.tele-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+@media(max-width:760px){.tele-grid{grid-template-columns:repeat(2,1fr)}}
+.tele-cell{padding:22px 20px;border-right:1px solid var(--line-soft)}
+.tele-cell:last-child{border-right:none}
+@media(max-width:760px){.tele-cell:nth-child(2){border-right:none}.tele-cell:nth-child(-n+2){border-bottom:1px solid var(--line-soft)}}
+.tele-num{font-family:var(--disp);font-weight:800;font-size:38px;line-height:1;letter-spacing:-.02em}
+.tele-num span{color:var(--amber);font-size:24px}
+.tele-label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.spark{display:block;width:100%;height:64px;border-top:1px solid var(--line-soft)}
+.spark path{fill:none;stroke:var(--cyan);stroke-width:1.6;opacity:.9}
+.spark .area{fill:url(#sg);stroke:none;opacity:.5}
+
+/* ---------- sections ---------- */
+section{padding:72px 0;border-bottom:1px solid var(--line-soft)}
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:14px;display:flex;align-items:center;gap:14px;
+}
+.eyebrow::after{content:"";height:1px;flex:1;max-width:80px;background:var(--line)}
+h2{
+  font-family:var(--disp);font-weight:800;font-stretch:108%;
+  font-size:clamp(28px,4vw,40px);letter-spacing:-.01em;margin-bottom:34px;
+}
+.section-intro{color:var(--muted);max-width:62ch;margin:-18px 0 38px}
+
+/* experience */
+.xp{display:grid;grid-template-columns:200px 1fr;gap:34px;padding:34px 0;border-top:1px solid var(--line-soft)}
+.xp:first-of-type{border-top:none;padding-top:0}
+@media(max-width:760px){.xp{grid-template-columns:1fr;gap:10px}}
+.xp-meta{font-family:var(--mono);font-size:12.5px;color:var(--faint);letter-spacing:.04em;line-height:2}
+.xp-meta .when{color:var(--cyan)}
+.xp h3{font-family:var(--disp);font-weight:700;font-size:21px;margin-bottom:2px}
+.xp .org{font-family:var(--mono);font-size:13px;color:var(--muted);margin-bottom:14px}
+.award{
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:16px;
+  font-family:var(--mono);font-size:12px;color:var(--amber);
+  background:var(--amber-dim);border:1px solid rgba(255,180,84,.3);
+  padding:6px 12px;border-radius:6px;
+}
+.xp ul{list-style:none;display:grid;gap:10px;color:var(--muted)}
+.xp li{padding-left:20px;position:relative}
+.xp li::before{content:"▸";position:absolute;left:0;color:var(--amber);font-size:12px;top:4px}
+.xp li strong{color:var(--text);font-weight:500}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{
+  font-family:var(--mono);font-size:11.5px;color:var(--cyan);
+  border:1px solid rgba(127,209,232,.28);background:var(--cyan-dim);
+  padding:4px 11px;border-radius:100px;
+}
+
+/* projects */
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(max-width:760px){.proj-grid{grid-template-columns:1fr}}
+.proj{
+  border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel);padding:26px 26px 22px;display:flex;flex-direction:column;gap:12px;
+  transition:transform .18s ease,border-color .18s ease;position:relative;
+}
+.proj:hover{transform:translateY(-4px);border-color:var(--amber)}
+.proj-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.proj h3{font-family:var(--disp);font-weight:700;font-size:18.5px}
+.proj .ptag{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);white-space:nowrap}
+.proj p{color:var(--muted);font-size:14.5px;flex:1}
+.proj .pfoot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line-soft);padding-top:14px}
+.proj .stack{font-family:var(--mono);font-size:11.5px;color:var(--faint)}
+.proj a.plink{font-family:var(--mono);font-size:12px;font-weight:600}
+.proj.feature{grid-column:1/-1;background:linear-gradient(135deg,var(--panel),rgba(255,180,84,.05))}
+
+/* skills */
+.skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:900px){.skill-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.skill-grid{grid-template-columns:1fr}}
+.skill-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:22px}
+.skill-card h3{
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:14px;
+}
+.skill-card ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.skill-card li{
+  font-size:13px;color:var(--text);border:1px solid var(--line-soft);
+  background:var(--panel-2);padding:5px 12px;border-radius:6px;
+}
+
+/* education */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:34px}
+@media(max-width:760px){.edu-grid{grid-template-columns:1fr}}
+.edu{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:24px}
+.edu .deg{font-family:var(--disp);font-weight:700;font-size:17px}
+.edu .sch{color:var(--muted);font-size:14px;margin:4px 0 8px}
+.edu .yr{font-family:var(--mono);font-size:12px;color:var(--cyan)}
+.edu .spec{font-size:13.5px;color:var(--muted);margin-top:10px;border-top:1px solid var(--line-soft);padding-top:10px}
+.certs{display:flex;flex-wrap:wrap;gap:10px}
+.cert{
+  font-family:var(--mono);font-size:12px;color:var(--text);
+  border:1px solid var(--line);background:var(--panel-2);
+  padding:9px 15px;border-radius:7px;
+}
+.cert::before{content:"✓ ";color:var(--good)}
+
+/* contact */
+.contact{padding:90px 0;text-align:center;border-bottom:none}
+.contact h2{margin-bottom:14px}
+.contact p{color:var(--muted);max-width:50ch;margin:0 auto 36px}
+.contact-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+.contact .mono-line{font-family:var(--mono);font-size:13px;color:var(--faint)}
+footer{
+  border-top:1px solid var(--line-soft);padding:26px 0;
+  font-family:var(--mono);font-size:11.5px;color:var(--faint);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <div class="brand">ST<b>/</b>SYS · SHRINIKA TELU</div>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <div class="status"><span class="dot"></span>Operational · Open to opportunities</div>
+        <h1>Shrinika<br>Telu<span class="amp">.</span></h1>
+        <div class="role">Software Engineer — Full-Stack <span style="color:var(--amber)">&amp;</span> AI Systems</div>
+        <p class="lede">
+          I build <strong>real-time industrial visualization platforms</strong> and
+          <strong>AI-integrated backend services</strong> — the kind of software where
+          live telemetry, scale, and reliability aren't features, they're the baseline.
+          4+ years across Angular, .NET, Python, and LLM systems.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-amber" href="mailto:shrinika.telu@gmail.com">Get in touch ↗</a>
+          <a class="btn btn-ghost" href="https://github.com/ShrinikaTelu" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/shrinikatelu/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="portrait">
+        <span class="corner c1"></span><span class="corner c2"></span>
+        <div class="frame"><img src="shrinika.jpg" alt="Portrait of Shrinika Telu"></div>
+        <div class="tag">LAKE FOREST, CA</div>
+      </div>
+    </div>
+
+    <!-- signature: live telemetry panel, mirroring the dashboards I build -->
+    <div class="telemetry reveal">
+      <div class="tele-head">
+        <span>IMPACT / TELEMETRY — COGNIZANT · AVEVA</span>
+        <span class="live">● LIVE</span>
+      </div>
+      <div class="tele-grid">
+        <div class="tele-cell"><div class="tele-num"><span id="n1">0</span><span>%</span></div><div class="tele-label">Developer productivity ↑</div></div>
+        <div class="tele-cell"><div class="tele-num"><span id="n2">0</span><span>%</span></div><div class="tele-label">QA effort ↓</div></div>
+        <div class="tele-cell"><div class="tele-num"><span id="n3">0</span><span>%</span></div><div class="tele-label">Faster release cycles</div></div>
+        <div class="tele-cell"><div class="tele-num"><span id="n4">0</span><span>+</span></div><div class="tele-label">Years shipping software</div></div>
+      </div>
+      <svg class="spark" viewBox="0 0 1000 64" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#7FD1E8" stop-opacity=".25"/>
+            <stop offset="1" stop-color="#7FD1E8" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path class="area" id="sparkArea" d=""></path>
+        <path id="sparkLine" d=""></path>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="experience" class="reveal">
+    <div class="eyebrow">SYS / 01 · Experience</div>
+    <h2>Where I've shipped</h2>
+
+    <article class="xp">
+      <div class="xp-meta">
+        <div class="when">07.2024 — Present</div>
+        <div>Lake Forest, CA</div>
+        <div>On-site / Hybrid</div>
+      </div>
+      <div>
+        <h3>Senior Associate Developer</h3>
+        <div class="org">Cognizant — AVEVA · Industrial visualization &amp; real-time monitoring</div>
+        <div class="award">★ MLEU Top Guns 2024 — Trailblazer Outstanding Contributor (Star Employee)</div>
+        <ul>
+          <li><strong>Led AI-driven engineering initiatives</strong> across teams — improving developer productivity by 30%, cutting QA effort by 25%, and accelerating release cycles by 20%.</li>
+          <li>Designed enterprise-scale full-stack applications with <strong>Angular 17/18, TypeScript, C#, ASP.NET Core, and SQL</strong> powering industrial visualization platforms.</li>
+          <li>Built component-driven Angular architecture with <strong>RxJS and state management</strong> — drag-and-drop canvas widgets, dynamic dashboards, context-aware components, real-time charting.</li>
+          <li>Architected scalable <strong>REST APIs and backend services</strong> (ASP.NET Core, Python) for high-volume telemetry processing and real-time data integration.</li>
+          <li>Led <strong>frontend modernization</strong>, migrating legacy AngularJS modules to modern Angular — better performance, maintainability, and code quality.</li>
+          <li>Owned <strong>Cypress E2E and component test automation</strong>, raising regression coverage and production stability.</li>
+        </ul>
+        <div class="chips"><span class="chip">Angular 17/18</span><span class="chip">RxJS</span><span class="chip">ASP.NET Core</span><span class="chip">Python</span><span class="chip">Cypress</span><span class="chip">Blazor</span><span class="chip">Real-time data</span></div>
+      </div>
+    </article>
+
+    <article class="xp">
+      <div class="xp-meta">
+        <div class="when">08.2023 — 06.2024</div>
+        <div>Atlanta, GA</div>
+      </div>
+      <div>
+        <h3>Application Developer</h3>
+        <div class="org">Capgemini — IBX · Enterprise platforms</div>
+        <ul>
+          <li>Developed scalable full-stack enterprise applications with <strong>Angular, TypeScript, C#, .NET Core, REST APIs, and SQL</strong>.</li>
+          <li>Built reusable Angular components, services, and shared libraries — improving development efficiency and UI consistency across teams.</li>
+          <li>Designed and optimized REST APIs supporting <strong>high-throughput business workflows</strong>.</li>
+          <li>Ran <strong>CI/CD pipelines on Azure DevOps</strong> with Git-based workflows for reliable, streamlined releases.</li>
+        </ul>
+        <div class="chips"><span class="chip">Angular</span><span class="chip">.NET Core</span><span class="chip">Azure DevOps</span><span class="chip">CI/CD</span><span class="chip">SQL</span></div>
+      </div>
+    </article>
+
+    <article class="xp">
+      <div class="xp-meta">
+        <div class="when">08.2020 — 06.2022</div>
+        <div>Hyderabad, IN</div>
+      </div>
+      <div>
+        <h3>Associate Engineer · Jr Engineer</h3>
+        <div class="org">India Informatics · Full-stack web applications</div>
+        <ul>
+          <li>Built full-stack web applications with Angular, TypeScript, C#, .NET, and SQL — from feature implementation to production support.</li>
+          <li>Integrated scalable REST APIs for data-driven business applications; performance optimization, debugging, and reliability work in Agile sprints.</li>
+        </ul>
+        <div class="chips"><span class="chip">Angular</span><span class="chip">C# / .NET</span><span class="chip">REST APIs</span><span class="chip">Agile</span></div>
+      </div>
+    </article>
+  </section>
+
+  <section id="projects" class="reveal">
+    <div class="eyebrow">SYS / 02 · Projects</div>
+    <h2>Built &amp; open-sourced</h2>
+    <p class="section-intro">Selected work from my GitHub — real-time systems, AI applications, and applied ML, across React and Angular.</p>
+    <div class="proj-grid">
+
+      <article class="proj feature">
+        <div class="proj-top">
+          <h3>Shift Handover Intelligence</h3>
+          <span class="ptag">Gemini 3 Hackathon</span>
+        </div>
+        <p>A Gemini 3–powered system that transforms unstructured industrial shift notes into structured, audit-ready safety reports. Full-stack architecture with multimodal ingestion (text, image, audio) and automated PDF report generation — built for the same operations world I work in daily at AVEVA.</p>
+        <div class="pfoot">
+          <span class="stack">Angular · FastAPI · SQLite · Gemini 3</span>
+          <a class="plink" href="https://github.com/ShrinikaTelu/shift-handover-intelligence" target="_blank" rel="noopener">View source →</a>
+        </div>
+      </article>
+
+      <article class="proj feature">
+        <div class="proj-top">
+          <h3>GridPulse</h3>
+          <span class="ptag">React · Real-Time Telemetry</span>
+        </div>
+        <p>A real-time industrial monitoring console: six sensors streaming at 10 Hz into a drag-and-drop widget grid with live canvas charts, alert thresholds, an incident replay scrubber, and natural-language data queries. Architected so high-frequency data never touches React state — ring buffers feed requestAnimationFrame-driven canvas charts at 60fps while React renders only low-frequency derived state. Zero chart or grid libraries.</p>
+        <div class="pfoot">
+          <span class="stack">React 19 · TypeScript · Zustand · Canvas</span>
+          <span>
+            <a class="plink" href="https://gridpulse-telu.vercel.app/" target="_blank" rel="noopener">Live demo →</a>
+            &nbsp;&nbsp;
+            <a class="plink" href="https://github.com/ShrinikaTelu/gridpulse" target="_blank" rel="noopener">Source →</a>
+          </span>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-top"><h3>CausalityCare</h3><span class="ptag">Multimodal AI</span></div>
+        <p>A causal reasoning engine for wellbeing — multimodal AI analysis across text, image, and audio inputs to surface cause-effect insights rather than surface correlations.</p>
+        <div class="pfoot">
+          <span class="stack">Python · LLMs</span>
+          <a class="plink" href="https://github.com/ShrinikaTelu/causalitycare" target="_blank" rel="noopener">View source →</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-top"><h3>Enterprise Document Assistant</h3><span class="ptag">RAG</span></div>
+        <p>An AI assistant for enterprise document workflows — retrieval-augmented generation for grounded answers over private document collections.</p>
+        <div class="pfoot">
+          <span class="stack">Python · RAG</span>
+          <a class="plink" href="https://github.com/ShrinikaTelu/Enterprise-Document-Assistant" target="_blank" rel="noopener">View source →</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-top"><h3>Deep Q-Learning Lunar Lander</h3><span class="ptag">Reinforcement Learning</span></div>
+        <p>A DQN agent trained to land a lunar module — experience replay, target networks, and reward shaping in OpenAI Gym's LunarLander environment.</p>
+        <div class="pfoot">
+          <span class="stack">Python · TensorFlow · Gym</span>
+          <a class="plink" href="https://github.com/ShrinikaTelu/Deep-Q-Learning-Agent-for-Lunar-Lander" target="_blank" rel="noopener">View source →</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-top"><h3>Huffman Coding Compression</h3><span class="ptag">Core CS</span></div>
+        <p>Lossless text compression with min-heap and tree-based encoding — a complete compression/decompression pipeline achieving ~30–40% file size reduction.</p>
+        <div class="pfoot">
+          <span class="stack">Python · Data Structures</span>
+          <a class="plink" href="https://github.com/ShrinikaTelu/HuffmanCoding" target="_blank" rel="noopener">View source →</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="skills" class="reveal">
+    <div class="eyebrow">SYS / 03 · Capabilities</div>
+    <h2>Tooling &amp; depth</h2>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <h3>Languages</h3>
+        <ul><li>Python</li><li>TypeScript</li><li>C#</li><li>JavaScript (ES6+)</li><li>SQL</li></ul>
+      </div>
+      <div class="skill-card">
+        <h3>Frontend</h3>
+        <ul><li>Angular 17/18</li><li>React 19</li><li>RxJS</li><li>NgRx</li><li>Blazor</li><li>SCSS</li><li>Responsive UI/UX</li></ul>
+      </div>
+      <div class="skill-card">
+        <h3>Backend</h3>
+        <ul><li>ASP.NET Core</li><li>FastAPI</li><li>REST APIs</li><li>Microservices</li><li>EF Core</li><li>Real-time data</li></ul>
+      </div>
+      <div class="skill-card">
+        <h3>AI / ML &amp; GenAI</h3>
+        <ul><li>LLM integration</li><li>RAG</li><li>Agentic AI</li><li>Prompt engineering</li><li>Model evaluation</li></ul>
+      </div>
+      <div class="skill-card">
+        <h3>Cloud &amp; DevOps</h3>
+        <ul><li>Azure</li><li>GCP (Vertex AI, Cloud Run)</li><li>AWS</li><li>Docker</li><li>CI/CD</li><li>GitHub Actions</li></ul>
+      </div>
+      <div class="skill-card">
+        <h3>Quality &amp; Core CS</h3>
+        <ul><li>Cypress (E2E + CT)</li><li>System design</li><li>DSA</li><li>Distributed systems</li><li>Concurrency</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="reveal">
+    <div class="eyebrow">SYS / 04 · Education &amp; Credentials</div>
+    <h2>Foundation</h2>
+    <div class="edu-grid">
+      <div class="edu">
+        <div class="deg">MS, Computer Science</div>
+        <div class="sch">University of Central Missouri</div>
+        <div class="yr">2021 — 2023</div>
+        <div class="spec">Specialization: Artificial Intelligence, Neural Networks &amp; Deep Learning, Big Data</div>
+      </div>
+      <div class="edu">
+        <div class="deg">B.Tech, Computer Science</div>
+        <div class="sch">National Institute of Technology, Manipur</div>
+        <div class="yr">2018 — 2021</div>
+        <div class="spec">Core CS — data structures, algorithms, systems</div>
+      </div>
+    </div>
+    <div class="certs">
+      <span class="cert">Machine Learning Specialization</span>
+      <span class="cert">Deep Learning Specialization</span>
+      <span class="cert">Generative AI with LLMs</span>
+      <span class="cert">Google Data Analytics Professional</span>
+      <span class="cert">Coding Ninjas DSA — Excellence (&gt;90%, 350+ problems)</span>
+    </div>
+  </section>
+
+  <section id="contact" class="contact reveal">
+    <div class="eyebrow" style="justify-content:center">SYS / 05 · Contact</div>
+    <h2>Let's build something reliable<span style="color:var(--amber)">.</span></h2>
+    <p>I'm open to software engineering roles where full-stack craft meets AI systems. The fastest way to reach me is email — I respond quickly.</p>
+    <div class="contact-links">
+      <a class="btn btn-amber" href="mailto:shrinika.telu@gmail.com">shrinika.telu@gmail.com</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/shrinikatelu/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/ShrinikaTelu" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="mono-line">📍 Lake Forest, CA · ☎ (913) 963-5954</div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;width:100%">
+    <span>© <span id="yr"></span> Shrinika Telu</span>
+    <span>talent = ability × hard work + consistency</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---- scroll reveal ---- */
+const io = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---- count-up ---- */
+function countUp(id, target, dur=1400){
+  const el = document.getElementById(id);
+  if(prefersReduced){ el.textContent = target; return; }
+  const t0 = performance.now();
+  function tick(t){
+    const p = Math.min((t-t0)/dur,1);
+    el.textContent = Math.round(target * (1-Math.pow(1-p,3)));
+    if(p<1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const statsIO = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      countUp('n1',30); countUp('n2',25); countUp('n3',20); countUp('n4',4);
+      statsIO.disconnect();
+    }
+  });
+},{threshold:.4});
+statsIO.observe(document.querySelector('.telemetry'));
+
+/* ---- live sparkline ---- */
+const N = 80, pts = [];
+let phase = 0;
+for(let i=0;i<N;i++) pts.push(genVal(i));
+function genVal(i){
+  return 36
+    - 14*Math.sin((i+phase)/7)
+    - 6*Math.sin((i+phase)/2.3)
+    + 4*Math.sin((i+phase)/13)
+    + (Math.random()*3-1.5);
+}
+function draw(){
+  const step = 1000/(N-1);
+  let d = '';
+  pts.forEach((v,i)=>{ d += (i?'L':'M') + (i*step).toFixed(1) + ' ' + Math.max(4,Math.min(60,v)).toFixed(1) + ' '; });
+  document.getElementById('sparkLine').setAttribute('d', d);
+  document.getElementById('sparkArea').setAttribute('d', d + 'L1000 64 L0 64 Z');
+}
+draw();
+if(!prefersReduced){
+  setInterval(()=>{
+    phase += 1;
+    pts.shift();
+    pts.push(genVal(N));
+    draw();
+  }, 320);
+}
+</script>
+</body>
+</html>
